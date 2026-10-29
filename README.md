@@ -1,8 +1,8 @@
 # THE SECRET CODE – ENGLISH ESCAPE ROOM
-Aspaen Neiva · Aplicación estática completa · HTML, CSS y JavaScript ES Modules.
+Aspaen Neiva · Aplicación estática completa · HTML autónomo, CSS y JavaScript.
 
 ## Inicio rápido
-1. Publique esta carpeta en GitHub Pages siguiendo los pasos siguientes.
+1. Extraiga el ZIP y abra `index.html` con doble clic. También puede publicar la carpeta en GitHub Pages. El archivo index.html incorpora el juego completo y las imágenes.
 2. Abra TEACHER DASHBOARD antes de entregar el dispositivo a los estudiantes. Configure un PIN propio (4–12 cifras), duración, pistas y modalidad.
 3. START MISSION → seleccionar nivel → escribir el nombre del equipo → BEGIN OPERATION → ACCEPT MISSION.
 4. Inicie START TIMER cuando el grupo esté listo. El tiempo inicial es 17 minutos.
@@ -17,10 +17,10 @@ Aspaen Neiva · Aplicación estática completa · HTML, CSS y JavaScript ES Modu
 5. Espere a que GitHub muestre la dirección publicada y abra esa dirección. No requiere servidor propio, pagos, claves API ni compilación.
 6. Para actualizar contenido, edite `data/missions.js`, confirme los cambios y espere la nueva publicación.
 
-Para probar ANTES de publicar, sirva la carpeta mediante un servidor HTTP local, por ejemplo `python3 -m http.server 8000` desde esta carpeta y abra `http://localhost:8000`. No abra `index.html` con doble clic: los navegadores restringen ES Modules bajo `file://`.
+Para probar, abra index.html directamente en un navegador moderno. No necesita instalar nada ni ejecutar un servidor. Opcionalmente puede servir la carpeta por HTTP. Algunos navegadores limitan el guardado local o la configuración del PIN al usar archivos locales; para estas funciones se recomienda GitHub Pages (HTTPS).
 
 ## Archivos
-- `index.html`: estructura y metadatos.
+- `index.html`: aplicación autónoma completa, con estilos, código e imágenes incorporados.
 - `styles.css`: diseño, colores, tarjetas, caja fuerte, animaciones y adaptación móvil.
 - `script.js`: navegación, panel docente, sonidos Web Audio, revisión y reportes.
 - `data/missions.js`: las 16 misiones, campos de respuesta, dos pistas y solucionario.
@@ -57,9 +57,9 @@ Se permite `ran into` en Nivel 3 Misión 1 y se explicita la concordancia formal
 No se muestra una imagen de banana en el acertijo del Nivel 1. Los textos originales se reconstruyen como texto seleccionable, con ilustraciones locales que apoyan la investigación.
 
 ## Editar preguntas
-En `data/missions.js`, cada nivel contiene `missions`. Cada misión tiene `title`, `text`, `fields`, `digit` (entero de 0 a 9), `answer` (solo panel docente) y dos `hints`. El código final se deriva de los cuatro `digit`; no se repite en el motor. Cambiar los dígitos durante una partida guardada exige reiniciarla. No incluya respuestas en `text` o en las pistas.
+En `data/missions.js`, cada nivel contiene `missions`. Cada misión tiene `title`, `text`, `fields`, `digit` (entero de 0 a 9), `answer` (solo panel docente) y dos `hints`. El código final se deriva de los cuatro `digit`; no se repite en el motor. Después de editar los archivos fuente, ejecute `python3 tools/bundle.py` para regenerar index.html. Cambiar los dígitos durante una partida guardada exige reiniciarla. No incluya respuestas en `text` o en las pistas.
 
 Los campos escritos no son calificados automáticamente. Los contadores de palabras son informativos y las variantes de redacción las revisa el docente. El PDF muestra el trabajo guardado, no las respuestas modelo. Para caracteres no latinos el PDF básico utiliza `?`; acentos latinos se transliteran para compatibilidad. El reporte imprimible desde el navegador conserva Unicode completo.
 
 ## Accesibilidad y compatibilidad
-Botones táctiles, etiquetas asociadas, foco visible, teclado numérico, contraste, estados anunciados y reducción de movimiento. Compatible con navegadores modernos con ES Modules, localStorage y Web Audio. La voz requiere speechSynthesis. Se recomienda revisar en el dispositivo del aula antes del evento.
+Botones táctiles, etiquetas asociadas, foco visible, teclado numérico, contraste, estados anunciados y reducción de movimiento. Compatible con navegadores modernos con JavaScript, localStorage y Web Audio. La voz requiere speechSynthesis. Se recomienda revisar en el dispositivo del aula antes del evento.

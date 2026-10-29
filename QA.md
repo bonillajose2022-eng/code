@@ -11,3 +11,6 @@ Navegador de escritorio: inicio, selección, representación de tarjetas, campos
 Las rutas son relativas y todos los recursos residen en el paquete. No se ha publicado en una cuenta de GitHub del usuario; el paquete está preparado para GitHub Pages.
 
 Las pruebas automatizadas verifican las reglas, no la seguridad frente a manipulación del código público. No se han probado físicamente iPads o teléfonos.
+
+## Corrección de carga
+El punto de entrada index.html incorpora todo el JavaScript como script clásico, CSS e imágenes data URI. No realiza importaciones de módulos ni solicitudes para iniciar. Verificación en navegador: portada, emblema cargado y navegación a los cuatro niveles. Prueba de arranque en entorno aislado sin red y comprobación de que no existen referencias externas en index.html.

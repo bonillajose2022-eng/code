@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+test('standalone entrypoint boots without modules or network',()=>{const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');assert(!/<script[^>]+src=/.test(html));assert(!/<link[^>]+rel="stylesheet"/.test(html));assert(!/\bimport\s*\{/.test(html));const nodes=new Map();const node=s=>{if(!nodes.has(s))nodes.set(s,{innerHTML:'',textContent:'',style:{},addEventListener(){}});return nodes.get(s);};const context={document:{querySelector:node,documentElement:{style:{setProperty(){}}}},window:{addEventListener(){}},localStorage:{getItem(){return null;},setItem(){}},setInterval(){},setTimeout(){},console,Date,JSON};vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);assert.match(node('#app').innerHTML,/START MISSION/);assert.match(node('#app').innerHTML,/THE<br>SECRET/);for(const src of html.replace(/<script>[\s\S]*?<\/script>/g,'').matchAll(/(?:src|href)="([^"]+)"/g))assert(src[1]==='#'||src[1].startsWith('data:'),src[1]);});
